@@ -281,7 +281,15 @@ else
 fi
 
 # ------------------------------------------------------------------------------
-# 7. Verify installed components
+# 7. Install Claude Code
+# ------------------------------------------------------------------------------
+
+log_step "Installing Claude Code"
+
+curl -fsSL https://claude.ai/install.sh | bash
+
+# ------------------------------------------------------------------------------
+# 8. Verify installed components
 # ------------------------------------------------------------------------------
 
 log_step "Verifying installed components"
@@ -310,9 +318,10 @@ verify_command "Docker" docker --version
 verify_command "Docker Compose" docker compose version
 verify_command "Google Chrome" google-chrome --version
 verify_command "Twingate" twingate version
+verify_command "Claude Code" claude --version
 
 # ------------------------------------------------------------------------------
-# 8. Install IntelliJ IDEA
+# 9. Install IntelliJ IDEA
 # ------------------------------------------------------------------------------
 
 log_step "Installing IntelliJ IDEA"
@@ -383,7 +392,7 @@ fi
 rm -f "${INTELLIJ_ARCHIVE}"
 
 # ------------------------------------------------------------------------------
-# 9. Final instructions
+# 10. Final instructions
 # ------------------------------------------------------------------------------
 
 log_step "Setup complete"
@@ -411,6 +420,15 @@ A few things you still need to do:
 
 4. If required, install Outlook and Teams as Progressive Web Apps
    through Google Chrome.
+
+5. Login to Claude Code:
+
+   Claude Code requires an account to use. Start an interactive session 
+   with the claude command and you’ll be prompted to log in on first use.
+   For Claude subscription or Console accounts, follow the prompts to complete 
+   authentication in your browser. If you’ve set the ANTHROPIC_API_KEY 
+   environment variable, Claude Code skips the login prompt and asks you to 
+   approve the key instead.
 
 5. IntelliJ IDEA Ultimate was installed last.
 
