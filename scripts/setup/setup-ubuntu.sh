@@ -337,8 +337,7 @@ fi
 
 INTELLIJ_TOP_LEVEL="$(
   tar -tzf "${INTELLIJ_ARCHIVE}" \
-    | head -n 1 \
-    | cut -d/ -f1
+    | sed -n '1{s#/.*##;p;}'
 )"
 
 if [[ -z "${INTELLIJ_TOP_LEVEL}" ]]; then
@@ -362,6 +361,7 @@ else
     -C /opt
 
   if [[ -x "${INTELLIJ_INSTALL_DIR}/bin/idea.sh" ]]; then
+
     log_success "IntelliJ IDEA installed successfully"
 
     log_info "Installation directory:"
@@ -371,8 +371,11 @@ else
     log_info "${INTELLIJ_INSTALL_DIR}/bin/idea.sh"
 
   else
+
     log_error "IntelliJ was extracted, but bin/idea.sh was not found."
+
     rm -f "${INTELLIJ_ARCHIVE}"
+
     exit 1
   fi
 fi
