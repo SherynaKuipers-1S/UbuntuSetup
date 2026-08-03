@@ -233,6 +233,12 @@ else
   log_success "Twingate installed"
 fi
 
+log_step "Setting up Twingate"
+
+twingate setup
+
+log_success "Twingate setup completed"
+
 # ------------------------------------------------------------------------------
 # 6. Disable Ubuntu Tiling Assistant
 # ------------------------------------------------------------------------------
